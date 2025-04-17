@@ -1,6 +1,6 @@
-package com.tecnologiaefinancas.desafiostech.cruds.produto.controller;
+package com.tecnologiaefinancas.desafiostech.pt.cruds.produto.controller;
 
-import com.tecnologiaefinancas.desafiostech.cruds.produto.entity.Livro;
+import com.tecnologiaefinancas.desafiostech.pt.cruds.produto.entity.Livro;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

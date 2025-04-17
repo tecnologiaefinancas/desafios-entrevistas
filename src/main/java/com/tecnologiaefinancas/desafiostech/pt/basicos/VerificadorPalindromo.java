@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.basicos;
+package com.tecnologiaefinancas.desafiostech.pt.basicos;
 
 import java.util.Scanner;
 

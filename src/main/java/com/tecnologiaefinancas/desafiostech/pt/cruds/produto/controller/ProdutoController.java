@@ -1,7 +1,7 @@
-package com.tecnologiaefinancas.desafiostech.cruds.produto.controller;
+package com.tecnologiaefinancas.desafiostech.pt.cruds.produto.controller;
 
-import com.tecnologiaefinancas.desafiostech.cruds.produto.entity.Produto;
-import com.tecnologiaefinancas.desafiostech.cruds.produto.repository.ProdutoRepository;
+import com.tecnologiaefinancas.desafiostech.pt.cruds.produto.entity.Produto;
+import com.tecnologiaefinancas.desafiostech.pt.cruds.produto.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

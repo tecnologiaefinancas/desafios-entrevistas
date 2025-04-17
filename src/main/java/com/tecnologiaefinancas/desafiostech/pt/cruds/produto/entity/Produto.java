@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.cruds.produto.entity;
+package com.tecnologiaefinancas.desafiostech.pt.cruds.produto.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

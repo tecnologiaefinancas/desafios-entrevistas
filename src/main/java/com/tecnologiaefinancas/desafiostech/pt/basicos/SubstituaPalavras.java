@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.basicos;
+package com.tecnologiaefinancas.desafiostech.pt.basicos;
 
 public class SubstituaPalavras {
     //Desafio Dado os seguintes textos:
