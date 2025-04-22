@@ -1,9 +1,8 @@
-package com.tecnologiaefinancas.desafiostech.pt.basicos;
+package com.tecnologiaefinancas.desafiostech.pt.basicos.stream;
 
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Stream01 {
     /*
