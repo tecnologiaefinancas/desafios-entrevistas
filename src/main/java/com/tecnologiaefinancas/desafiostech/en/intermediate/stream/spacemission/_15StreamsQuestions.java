@@ -44,13 +44,14 @@ public class _15StreamsQuestions {
 
     11. Joining: Create a single string of all mission names, separated by commas.
 
-    12. **Average:** Calculate the average launch year of all missions to the Moon.
+    12. Average: Calculate the average launch year of all missions to the Moon.
 
-    13. **Partition By:** Partition missions into two groups: successful (`success == true`) and failed (`success == false`).
+    13. Partition By: Partition missions into two groups: successful (`success == true`) and failed (`success == false`).
 
-    14. **Distinct Destinations:** Get a list of all distinct destinations visited by the missions.
+    14. Distinct Destinations: Get a list of all distinct destinations visited by the missions.
 
-    15. **Find First:** Find the first mission launched by ISRO (Indian Space Research Organisation).
+    15. Find First: Find the first mission launched by ISRO (Indian Space Research Organisation).
+
      */
 
 
@@ -74,7 +75,7 @@ public class _15StreamsQuestions {
         Map<String, List<SpaceMission>> groupedByDestination = missions.stream().collect(Collectors.groupingBy(SpaceMission::getDestination));
 
         /*
-        // Exibir resultados
+        Exibir resultados
         groupedByDestination.forEach((destination, missionList) -> {
             System.out.println("Destination: " + destination);
             missionList.forEach(System.out::println);
@@ -102,9 +103,41 @@ public class _15StreamsQuestions {
         //11. Joining: Create a single string of all mission names, separated by commas.
         String ofMissionNames = missions.stream().map(SpaceMission::getName).collect(Collectors.joining(", ")); // Extract mission names and join with ", "
 
-        System.out.println("All mission names: " + ofMissionNames);
+        // System.out.println("All mission names: " + ofMissionNames);
+
+        // 12. Average: Calculate the average launch year of all missions to the Moon.
+
+        int averageLaunchYear = (int) missions.stream().filter(mission -> "Moon".equals(mission.getDestination()))
+                .mapToInt(SpaceMission::getYear) // Extract years
+                .average()
+                .orElse(0);
+
+        // System.out.println("Average launch year of Moon missions: " + averageLaunchYear);
+
+        // 13. Partition By: Partition missions into two groups: successful (`success == true`) and failed (`success == false`).
+        Map<Boolean, List<SpaceMission>> partitionerMissions = missions.stream()
+                .collect(Collectors.partitioningBy(SpaceMission::isSuccess));
+
+        /*
+        System.out.println("Successful Missions:");
+        partitionerMissions.get(true).forEach(System.out::println);
+        System.out.println("\nFailed Missions:");
+        partitionerMissions.get(false).forEach(System.out::println);
+        */
+
+        //     14. Distinct Destinations: Get a list of all distinct destinations visited by the missions.
+        List<String> distinctDestinations = missions.stream().map(SpaceMission::getDestination).distinct().toList();
+        // System.out.println(distinctDestinations);
+
+        //     15. Find First: Find the first mission launched by ISRO (Indian Space Research Organisation).
+        Optional<SpaceMission> firstMissionLaunchedByISRO = missions.stream()
+                .filter(mission -> "ISRO".equals(mission.getAgency()))
+                .findFirst();
+
+        firstMissionLaunchedByISRO.ifPresent(mission ->
+                System.out.println("First ISRO mission: " + mission.getName() + " (" + mission.getYear() + ")"));
 
 
-        // Need to practice more reduce and joining
+        // Need to practice more reduce, joining, partition by. I will use the advanced package to continue it.
     }
 }
