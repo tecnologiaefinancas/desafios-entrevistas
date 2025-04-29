@@ -34,15 +34,15 @@ public class _15StreamsQuestions {
 
     6. Group By: Group all missions by their destination (e.g., Moon, Mars, ISS, etc.).
 
-    7. **Any Match:** Check if there is any mission launched after the year 2020.
+    7. Any Match: Check if there is any mission launched after the year 2020.
 
-    8. **All Match:** Check if all missions to Mars were successful.
+    8. All Match Check if all missions to Mars were successful.
 
-    9. **Reduce:** Find the earliest mission's year (smallest `year` value).
+    9. Reduce: Find the earliest mission's year (smallest `year` value).
 
-    10. **Filter + Collect:** Get a list of all failed missions (`success == false`).
+    10. Filter + Collect: Get a list of all failed missions (`success == false`).
 
-    11. **Joining:** Create a single string of all mission names, separated by commas.
+    11. Joining: Create a single string of all mission names, separated by commas.
 
     12. **Average:** Calculate the average launch year of all missions to the Moon.
 
@@ -69,18 +69,42 @@ public class _15StreamsQuestions {
 
         // 5. Filter + Count: Count how many missions were launched by NASA.
         long missionsCount = missions.stream().filter(spaceMission -> spaceMission.getAgency().equals("NASA")).count();
-        System.out.println(missionsCount);
 
         // 6. Group By: Group all missions by their destination (e.g., Moon, Mars, ISS, etc.).
         Map<String, List<SpaceMission>> groupedByDestination = missions.stream().collect(Collectors.groupingBy(SpaceMission::getDestination));
 
+        /*
         // Exibir resultados
         groupedByDestination.forEach((destination, missionList) -> {
             System.out.println("Destination: " + destination);
             missionList.forEach(System.out::println);
             System.out.println();
         });
+        */
+
+        // 7. Any Match: Check if there is any mission launched after the year 2020.
+        List<SpaceMission> missionsLaunchedAfter2020 = missions.stream().filter(mission -> mission.getYear() > 2020).toList();
+        // or
+        boolean hasMissionAfter2020 = missions.stream().anyMatch(mission -> mission.getYear() > 2020);
+
+        // 8. All Match Check if all missions to Mars were successful.
+        boolean allMarsMissionsWereSuccessful = missions.stream().filter(mission -> mission.getDestination().equals("Mars")).allMatch(SpaceMission::isSuccess);
+        System.out.println(allMarsMissionsWereSuccessful);
+
+        // 9. Reduce: Find the earliest mission's year (smallest `year` value).
+        Optional<Integer> earliestYearMission = missions.stream().map(SpaceMission::getYear).reduce(Integer::min); // Extract years and find the minimum year
+        //or
+        Optional<SpaceMission> earliestYearMission02 = missions.stream().min(Comparator.comparingInt(SpaceMission::getYear));
+
+        // 10. Filter + Collect: Get a list of all failed missions (`success == false`).
+        List<SpaceMission> allFailedMissions = missions.stream().filter(mission -> !mission.isSuccess()).toList();
+
+        //11. Joining: Create a single string of all mission names, separated by commas.
+        String ofMissionNames = missions.stream().map(SpaceMission::getName).collect(Collectors.joining(", ")); // Extract mission names and join with ", "
+
+        System.out.println("All mission names: " + ofMissionNames);
 
 
+        // Need to practice more reduce and joining
     }
 }
