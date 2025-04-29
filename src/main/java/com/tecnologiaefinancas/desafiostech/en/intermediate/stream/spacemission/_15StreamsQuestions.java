@@ -1,0 +1,86 @@
+package com.tecnologiaefinancas.desafiostech.en.intermediate.stream.spacemission;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class _15StreamsQuestions {
+
+
+
+    public static void main (String[]args) {
+        List<SpaceMission> missions = Arrays.asList(
+                new SpaceMission("Apollo 11", "Moon", 1969, "NASA", true),
+                new SpaceMission("Mars Rover", "Mars", 2003, "NASA", true),
+                new SpaceMission("Sputnik", "Earth Orbit", 1957, "Soviet Union", true),
+                new SpaceMission("Viking 1", "Mars", 1975, "NASA", true),
+                new SpaceMission("Hubble Telescope", "Earth Orbit", 1990, "NASA", true),
+                new SpaceMission("Chandrayaan-2", "Moon", 2019, "ISRO", true),
+                new SpaceMission("Artemis I", "Moon", 2022, "NASA", false),
+                new SpaceMission("SpaceX Dragon", "ISS", 2012, "SpaceX", true)
+        );
+
+            /* Challenge: 15 Stream questions.
+
+    1. Filter: Find all space missions that were sent to the Moon.
+
+    2. Map: Create a list of mission names (just the `name` field).
+
+    3. Sort: Sort the missions by their launch year in ascending order.
+
+    4. Limit: Get the first 3 missions that succeeded (`success == true`).
+
+    5. Filter + Count: Count how many missions were launched by NASA.
+
+    6. Group By: Group all missions by their destination (e.g., Moon, Mars, ISS, etc.).
+
+    7. **Any Match:** Check if there is any mission launched after the year 2020.
+
+    8. **All Match:** Check if all missions to Mars were successful.
+
+    9. **Reduce:** Find the earliest mission's year (smallest `year` value).
+
+    10. **Filter + Collect:** Get a list of all failed missions (`success == false`).
+
+    11. **Joining:** Create a single string of all mission names, separated by commas.
+
+    12. **Average:** Calculate the average launch year of all missions to the Moon.
+
+    13. **Partition By:** Partition missions into two groups: successful (`success == true`) and failed (`success == false`).
+
+    14. **Distinct Destinations:** Get a list of all distinct destinations visited by the missions.
+
+    15. **Find First:** Find the first mission launched by ISRO (Indian Space Research Organisation).
+     */
+
+
+        //1. Filter: Find all space missions that were sent to the Moon.
+        List<SpaceMission> wentToMoonList = missions.stream().filter(spaceMission -> Objects.equals(spaceMission.getDestination(), "Moon")).toList();
+
+        // 2. Map: Create a list of mission names (just the `name` field)."
+        List<String> missionNames = missions.stream().map(SpaceMission::getName).sorted().toList();
+
+        // 3. Sort: Sort the missions by their launch year in ascending order."
+        List<SpaceMission> missionsByYear = missions.stream().sorted(Comparator.comparing(SpaceMission::getYear)).toList();
+
+
+        // 4. Limit: Get the first 3 missions that succeeded (`success == true`)."
+        List<SpaceMission> firt3MissionsSucceeded = missions.stream().filter(SpaceMission::isSuccess).limit(3).toList();
+
+        // 5. Filter + Count: Count how many missions were launched by NASA.
+        long missionsCount = missions.stream().filter(spaceMission -> spaceMission.getAgency().equals("NASA")).count();
+        System.out.println(missionsCount);
+
+        // 6. Group By: Group all missions by their destination (e.g., Moon, Mars, ISS, etc.).
+        Map<String, List<SpaceMission>> groupedByDestination = missions.stream().collect(Collectors.groupingBy(SpaceMission::getDestination));
+
+        // Exibir resultados
+        groupedByDestination.forEach((destination, missionList) -> {
+            System.out.println("Destination: " + destination);
+            missionList.forEach(System.out::println);
+            System.out.println();
+        });
+
+
+    }
+}
