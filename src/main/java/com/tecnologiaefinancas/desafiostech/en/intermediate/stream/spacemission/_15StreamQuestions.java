@@ -2,9 +2,8 @@ package com.tecnologiaefinancas.desafiostech.en.intermediate.stream.spacemission
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class _15StreamsQuestions {
+public class _15StreamQuestions {
 
 
 
