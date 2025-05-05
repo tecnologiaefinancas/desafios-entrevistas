@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.en.basic;
+package com.tecnologiaefinancas.desafiostech.en.basic.oneclasschallenges;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

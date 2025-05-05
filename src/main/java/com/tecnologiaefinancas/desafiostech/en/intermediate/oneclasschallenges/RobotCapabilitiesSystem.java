@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.en.intermediate;
+package com.tecnologiaefinancas.desafiostech.en.intermediate.oneclasschallenges;
 
 public class RobotCapabilitiesSystem {
 

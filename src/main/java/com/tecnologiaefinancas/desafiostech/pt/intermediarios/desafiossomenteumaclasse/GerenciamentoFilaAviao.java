@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.pt.intermediarios;
+package com.tecnologiaefinancas.desafiostech.pt.intermediarios.desafiossomenteumaclasse;
 
 import java.util.LinkedList;
 import java.util.Queue;

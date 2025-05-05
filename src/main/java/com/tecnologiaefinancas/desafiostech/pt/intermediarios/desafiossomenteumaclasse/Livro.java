@@ -1,7 +1,6 @@
-package com.tecnologiaefinancas.desafiostech.pt.intermediarios;
+package com.tecnologiaefinancas.desafiostech.pt.intermediarios.desafiossomenteumaclasse;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Livro {
 

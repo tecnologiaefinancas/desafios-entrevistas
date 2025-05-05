@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.pt.intermediarios;
+package com.tecnologiaefinancas.desafiostech.pt.intermediarios.desafiossomenteumaclasse;
 
 public class InstanceofGame {
 
