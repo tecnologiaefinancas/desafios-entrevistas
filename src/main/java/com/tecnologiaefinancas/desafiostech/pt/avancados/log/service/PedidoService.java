@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PedidoService {
 
-    private List<Pedido> pedidos = new ArrayList<>();
+    private final List<Pedido> pedidos = new ArrayList<>();
 
     public void adicionarPedido(Pedido pedido){
         pedidos.add(pedido);
@@ -40,4 +40,21 @@ public class PedidoService {
             System.out.println("Nenhum pedido localizado com esse código.");
         }
     }
+
+    // Opção Selecionada: 3 - Filtrar pedidos acima de determinado preço
+    public void filtrarPedidosAcimaDeterminadoPreco(Double preco) {
+
+        for (Pedido pedido : pedidos) {
+            if (pedido.getPreco() > preco) {
+                System.out.println(pedido);
+            }
+        }
+
+        // Se nenhum pedido foi encontrado, exibe mensagem de erro
+        if (preco < 0) {
+            System.out.println("Insira um número positivo.");
+        }
+    }
+
+
 }

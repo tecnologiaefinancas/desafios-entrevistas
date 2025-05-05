@@ -3,12 +3,12 @@ package com.tecnologiaefinancas.desafiostech.pt.avancados.log;
 import com.tecnologiaefinancas.desafiostech.pt.avancados.log.entity.Pedido;
 import com.tecnologiaefinancas.desafiostech.pt.avancados.log.service.PedidoService;
 
-
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.tecnologiaefinancas.desafiostech.pt.avancados.log.entity.Pedido.listaPedidosEntity;
 import static com.tecnologiaefinancas.desafiostech.pt.avancados.log.repository.PedidoRepository.parseLog;
 
 
@@ -96,6 +96,7 @@ public class ExtrairDadosFormatadosLog03 {
             if (pedidoEntity != null) pedidoService.adicionarPedido(pedidoEntity);
         });
 
+
         System.out.println("Bem vindo ao sistema de pedidos \n \n"
         + "Escolha uma opção: \n"
         + "1 - Listar todos os pedidos \n" +
@@ -118,6 +119,23 @@ public class ExtrairDadosFormatadosLog03 {
                 String codigoDigitado = scanner.next();
                 pedidoService.buscarPedidosPorCodigo(codigoDigitado);
                 break;
+            case 3:
+                System.out.println("Digite acima de qual preço será executado o filtro:");
+
+                if (scanner.hasNextDouble()) { // Verifica se a entrada é um número válido
+                    Double precoDigitado = scanner.nextDouble();
+                    pedidoService.filtrarPedidosAcimaDeterminadoPreco(precoDigitado);
+                } else {
+                    System.out.println("(!) Erro: Apenas números são aceitos nesse filtro. Tente novamente.");
+                    scanner.next(); // Limpa a entrada inválida
+                }
+                break;
+            case 4:
+                System.out.println(ordenarPedidosPrecoCrescente());
+                break;
+            case 5:
+                System.out.println(ordenarPedidosPrecoDecrescente());
+                break;
             case 6:
                 System.out.println("Digite acima de quantas quantas unidades compradas verificar:");
                 int quantidadeUnidades = scanner.nextInt();
@@ -136,9 +154,21 @@ public class ExtrairDadosFormatadosLog03 {
 
  }
 
-    // Opção Selecionada: 1 - Na classe pedidoService;
+    // Opção Selecionada: 1, 2 e 3 - Na classe pedidoService;
 
 
+    // Opção Selecionada: 4 - Ordenar por preço crescente
+    public static List<Pedido> ordenarPedidosPrecoCrescente() {
+        return listaPedidosEntity.stream()
+                .sorted((p1, p2) -> Double.compare(p1.getPreco(), p2.getPreco()))
+                .toList();
+    }
+    // Opção Selecionada: 5 - Ordenar por preço decrescente
+    public static List<Pedido> ordenarPedidosPrecoDecrescente(){
+        return listaPedidosEntity.stream()
+                .sorted(Comparator.comparingDouble(Pedido::getPreco).reversed())
+                .toList();
+    }
 
     // Opção Selecionada: 6 - Contar quantos clientes compraram mais do que determinada unidades
     public static void filtrarQuemComprouMaisQueNUnidades(int nUnidades){
@@ -159,8 +189,7 @@ public class ExtrairDadosFormatadosLog03 {
 
             System.out.println("Quantidade de clientes que compraram mais que " + nUnidades + " unidades: " + retorno + ".");
         }
-    };
-
+    }
 
 
 

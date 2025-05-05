@@ -1,6 +1,7 @@
 package com.tecnologiaefinancas.desafiostech.pt.avancados.log.entity;
 
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pedido {
     private String codigoPedido;
@@ -8,6 +9,8 @@ public class Pedido {
     private String nomeProduto;
     private int quantidade;
     private double preco;
+
+    public static List<Pedido> listaPedidosEntity = new ArrayList<>();
 
 
 
@@ -70,6 +73,6 @@ public class Pedido {
         "Quantidade: " + quantidade + '\n' +
                 "Preço R$: " + preco + '\n' +
                 "-----------------------";
-    };
+    }
 
 }
