@@ -2,6 +2,8 @@ package com.tecnologiaefinancas.desafiostech.pt.avancados.log.repository;
 
 import com.tecnologiaefinancas.desafiostech.pt.avancados.log.entity.Pedido;
 
+import static com.tecnologiaefinancas.desafiostech.pt.avancados.log.entity.Pedido.listaPedidosEntity;
+
 public class PedidoRepository {
 
     public static Pedido parseLog(String log) {
@@ -14,7 +16,10 @@ public class PedidoRepository {
             int quantidade = Integer.parseInt(log.substring(log.indexOf("Quantidade: ") + 12, log.indexOf(" | Preço: ")));
             double preco = Double.parseDouble(log.substring(log.indexOf("Preço: R$ ") + 10).replace(",", "."));
 
-            return new Pedido(pedido, cliente, produto, quantidade, preco);
+            Pedido novoPedido = new Pedido(pedido, cliente, produto, quantidade, preco);
+
+            listaPedidosEntity.add(novoPedido);
+            return novoPedido;
         }
         System.out.println("Erro: Log em formato inválido.");
         return null; // Retorna null se o log for inválido
