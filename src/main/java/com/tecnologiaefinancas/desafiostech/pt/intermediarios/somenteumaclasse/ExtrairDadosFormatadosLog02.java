@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.pt.intermediarios.desafiossomenteumaclasse;
+package com.tecnologiaefinancas.desafiostech.pt.intermediarios.somenteumaclasse;
 
 public class ExtrairDadosFormatadosLog02 {
     /*

@@ -1,4 +1,4 @@
-package com.tecnologiaefinancas.desafiostech.pt.intermediarios.desafiossomenteumaclasse;
+package com.tecnologiaefinancas.desafiostech.pt.intermediarios.somenteumaclasse;
 
 import java.util.ArrayList;
 
